@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using static Customer.Application.Cliente.Dto.ClienteDto;
+using static Customer.Application.Cliente.Dto.UsuarioDto;
 
 namespace Customer.Api.Controllers
 {
@@ -50,7 +51,7 @@ namespace Customer.Api.Controllers
                 if (jwtTokenVm is null) return Unauthorized();
 
                 var result = await this.mediator.Send(new CreateClienteCommand(dto) { IdUsuario = jwtTokenVm.Id });
-               
+
                 return Created($"{result.Cliente.Id}", result.Cliente);
             }
             catch (Exception e)
@@ -67,10 +68,11 @@ namespace Customer.Api.Controllers
             return Ok(result.Cliente);
         }
 
-        [HttpDelete()]
-        public async Task<IActionResult> Apagar(ClienteInputDto dto)
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Apagar([FromRoute] Guid id)
         {
-            var result = await this.mediator.Send(new DeleteClienteCommand(dto));
+            var result = await this.mediator.Send(new DeleteClienteCommand(id));
             return Ok(result.Cliente);
         }
 

@@ -23,7 +23,7 @@ namespace Customer.Domain.Cadastro
 
         public int Idade => Nascimento.CalculaAge();
 
-        public  Cliente(string nome, Endereco endereco, Cpf cpf, TipoSexoEnum sexo, DateTime nascimento, Guid usuarioId)
+        public Cliente(string nome, Endereco endereco, Cpf cpf, TipoSexoEnum sexo, DateTime nascimento, Guid usuarioId)
         {
             Id = Guid.NewGuid();
             Nome = nome;
@@ -32,6 +32,15 @@ namespace Customer.Domain.Cadastro
             Cpf = cpf;
             Nascimento = nascimento;
             UsuarioId = usuarioId;
+        }
+
+        public void Update(string nome, Endereco endereco, Cpf cpf, TipoSexoEnum sexo, DateTime nascimento)
+        {
+            Nome = nome;
+            Sexo = sexo;
+            Endereco = endereco;
+            Cpf = cpf;
+            Nascimento = nascimento;
         }
 
         public void SetUsuarioId(Guid usuarioId)

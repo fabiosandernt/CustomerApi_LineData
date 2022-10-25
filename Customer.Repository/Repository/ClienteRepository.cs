@@ -1,4 +1,5 @@
-﻿using Customer.Domain.Cadastro;
+﻿using Customer.Domain.Account;
+using Customer.Domain.Cadastro;
 using Customer.Domain.Cadastro.Repository;
 using Customer.Repository.Context;
 using Customer.Repository.Database;
@@ -20,6 +21,12 @@ namespace Customer.Repository.Repository
         public async Task<IEnumerable<Cliente>> ObterTodosClientesPorCpf(string cpf)
         {
             return await this.Query.Where(x => x.Cpf.Numero == cpf).ToListAsync();  
+        }
+
+      
+        public async Task<IEnumerable<Cliente>> ObterClientePorId(Guid id)
+        {
+            return await this.Query.Where(x => x.Id == id).ToListAsync();
         }
     }
 }

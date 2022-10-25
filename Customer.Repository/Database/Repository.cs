@@ -1,6 +1,8 @@
 ﻿using Customer.CrossCutting.Repository;
 using Customer.Repository.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using System.Data;
 using System.Linq.Expressions;
 
 

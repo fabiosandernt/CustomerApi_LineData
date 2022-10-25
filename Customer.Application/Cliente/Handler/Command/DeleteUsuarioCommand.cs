@@ -1,9 +1,4 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static Customer.Application.Cliente.Dto.UsuarioDto;
 
 namespace Customer.Application.Cliente.Handler.Command
@@ -12,6 +7,7 @@ namespace Customer.Application.Cliente.Handler.Command
     {
         public UsuarioInputDto Usuario { get; set; }
 
+        public Guid IdUsuario { get; set; }
         public DeleteUsuarioCommand(UsuarioInputDto usuario)
         {
             Usuario = usuario;

@@ -7,5 +7,8 @@ namespace Customer.Domain.Cadastro.Repository
     {
         Task<IEnumerable<Cliente>> ObterTodosClientes();
         Task<IEnumerable<Cliente>> ObterTodosClientesPorCpf(string cpf);
+
+        Task<IEnumerable<Cliente>> ObterClientePorId(Guid id);
+
     }
 }

@@ -27,13 +27,13 @@ namespace Customer.Application.Cliente.Handler
 
         public async Task<UpdateClienteCommandResponse> Handle(UpdateClienteCommand request, CancellationToken cancellationToken)
         {
-            var result = await this._clienteService.Atualizar(request.Cliente, request.IdUsuario);
+            var result = await this._clienteService.Atualizar(request.Cliente);
             return new UpdateClienteCommandResponse(result);
         }
 
         public async Task<DeleteClienteCommandResponse> Handle(DeleteClienteCommand request, CancellationToken cancellationToken)
         {
-            var result = await this._clienteService.Deletar(request.Cliente, request.IdUsuario);
+            var result = await this._clienteService.Deletar(request.Id);
             return new DeleteClienteCommandResponse(result);
         }
         public async Task<GetAllClienteQueryResponse> Handle(GetAllClienteQuery request, CancellationToken cancellationToken)

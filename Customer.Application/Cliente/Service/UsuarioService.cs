@@ -29,20 +29,22 @@ namespace Customer.Application.Cliente.Service
 
             var usuario = this._mapper.Map<Customer.Domain.Account.Usuario>(dto);
 
-            usuario.Validate();
-            usuario.SetPassword();
+            //usuario.Validate();
+            //usuario.SetPassword();
 
-            usuario.Id = Guid.NewGuid();
-
+            usuario.Id = Guid.NewGuid(); 
             await _usuarioRepository.Save(usuario);
 
             return this._mapper.Map<UsuarioOutputDto>(usuario);
 
         }
 
-        public async Task<UsuarioOutputDto> Deletar([FromBody] UsuarioInputDto dto)
+        public async Task<UsuarioOutputDto> Deletar(UsuarioInputDto dto)
         {
-            var usuario = this._mapper.Map<Customer.Domain.Account.Usuario>(dto);
+            var usuario = await _usuarioRepository.Get(dto.Id);
+
+            if(usuario == null) 
+                throw new Exception("Usuário não encontrado");
 
             await this._usuarioRepository.Delete(usuario);
 
@@ -54,14 +56,14 @@ namespace Customer.Application.Cliente.Service
         {
             if (!dto.Id.HasValue) throw new Exception("Usuário não encontrado");
 
-            if (await _usuarioRepository.AnyAsync(x => x.Email.Valor == dto.Email.Valor && x.Id != dto.Id))
-                throw new Exception("Já existe um usuário cadastrado com o email informado");
+            //if (await _usuarioRepository.AnyAsync(x => x.Email.Valor == dto.Email.Valor && x.Id != dto.Id))
+            //    throw new Exception("Já existe um usuário cadastrado com o email informado");
 
             var usuario = await _usuarioRepository.GetbyExpressionAsync(x => x.Id == dto.Id.Value);
             if (usuario is null) throw new Exception("Usuário não encontrado");
-
+                     
             usuario.Update(dto.Nome, dto.Email, dto.Password, dto.TipoUsuario);
-
+            usuario.SetPassword();
             await this._usuarioRepository.Update(usuario);
 
             return this._mapper.Map<UsuarioOutputDto>(usuario);

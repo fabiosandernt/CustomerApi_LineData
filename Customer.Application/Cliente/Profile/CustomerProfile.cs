@@ -1,8 +1,7 @@
 ﻿using Customer.Domain.Account;
-
 using static Customer.Application.Cliente.Dto.UsuarioDto;
 using static Customer.Application.Cliente.Dto.ClienteDto;
-using Customer.Domain.Helpers.Extension;
+
 
 namespace Customer.Application.Cliente.Profile
 {

@@ -1,9 +1,5 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using static Customer.Application.Cliente.Dto.ClienteDto;
 
 namespace Customer.Application.Cliente.Handler.Command

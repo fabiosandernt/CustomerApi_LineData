@@ -6,8 +6,8 @@ namespace Customer.Application.Cliente.Service
     {
         Task<ClienteOutputDto> Criar(ClienteInputDto dto, Guid usuarioId);
         Task<List<ClienteOutputDto>> ObterTodos();
-        Task<ClienteOutputDto> Atualizar(ClienteInputDto dto, Guid usuarioId);
-        Task<ClienteOutputDto> Deletar(ClienteInputDto dto, Guid usuarioId);
+        Task<ClienteOutputDto> Atualizar(ClienteInputDto dto);
+        Task<ClienteOutputDto> Deletar(Guid id);
         Task<ClienteOutputDto> ObterPorId(Guid id);
     }
 }
