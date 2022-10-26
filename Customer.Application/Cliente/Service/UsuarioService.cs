@@ -29,8 +29,8 @@ namespace Customer.Application.Cliente.Service
 
             var usuario = this._mapper.Map<Customer.Domain.Account.Usuario>(dto);
 
-            //usuario.Validate();
-            //usuario.SetPassword();
+            usuario.Validate();
+            usuario.SetPassword();
 
             usuario.Id = Guid.NewGuid(); 
             await _usuarioRepository.Save(usuario);
