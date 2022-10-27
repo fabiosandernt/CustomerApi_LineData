@@ -13,7 +13,7 @@ namespace Customer.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class ClienteController : ControllerBase
     {
         private readonly IMediator mediator;
